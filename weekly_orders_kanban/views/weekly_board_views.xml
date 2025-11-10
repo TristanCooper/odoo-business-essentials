@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Weekly Board Item Kanban -->
+    <record id="view_weekly_board_item_kanban" model="ir.ui.view">
+        <field name="name">weekly.board.item.kanban</field>
+        <field name="model">weekly.board.item</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage_id" create="1" class="o_kanban_small_column">
+                <field name="stage_id"/>
+                <field name="customer_id"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="o_kanban_record oe_kanban_global_click">
+                            <div class="o_kanban_details">
+                                <strong><field name="customer_id"/></strong>
+                                <t t-if="record.email.raw_value">
+                                    <div class="o_text_overflow">
+                                        <i class="fa fa-envelope" role="img" aria-label="Email"/>
+                                        <a t-att-href="'mailto:%s' % record.email.raw_value" t-esc="record.email.raw_value"/>
+                                    </div>
+                                </t>
+                                <t t-if="record.phone.raw_value">
+                                    <div class="o_text_overflow">
+                                        <i class="fa fa-phone" role="img" aria-label="Phone"/>
+                                        <a t-att-href="'tel:%s' % record.phone.raw_value" t-esc="record.phone.raw_value"/>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Weekly Board Item Tree/Form -->
+    <record id="view_weekly_board_item_tree" model="ir.ui.view">
+        <field name="name">weekly.board.item.tree</field>
+        <field name="model">weekly.board.item</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="customer_id"/>
+                <field name="stage_id"/>
+                <field name="sequence"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_weekly_board_item_form" model="ir.ui.view">
+        <field name="name">weekly.board.item.form</field>
+        <field name="model">weekly.board.item</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="customer_id"/>
+                        <field name="stage_id"/>
+                        <field name="sequence"/>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes" widget="text"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action and Menu -->
+    <record id="action_weekly_board" model="ir.actions.act_window">
+        <field name="name">Weekly Customer Board</field>
+        <field name="res_model">weekly.board.item</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{"search_default_group_by_stage_id": 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create weekly items and drag between Schedule, weekdays, and Order Received.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_weekly_board_root" name="Weekly Board" sequence="10"/>
+    <menuitem id="menu_weekly_board" name="Board" parent="menu_weekly_board_root" action="weekly_orders_kanban.action_partner_weekly_board" sequence="10"/>
+</odoo>

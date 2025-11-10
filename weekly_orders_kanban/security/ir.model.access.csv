@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_weekly_board_item_user,weekly.board.item.user,model_weekly_board_item,base.group_user,1,1,1,1
+access_weekly_board_stage_user,weekly.board.stage.user,model_weekly_board_stage,base.group_user,1,1,1,1

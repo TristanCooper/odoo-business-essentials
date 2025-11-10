@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Server action to ensure records exist then open board -->
+    <record id="ir_actions_server_open_weekly_board" model="ir.actions.server">
+        <field name="name">Open Weekly Board</field>
+        <field name="model_id" ref="model_weekly_board_item"/>
+        <field name="state">code</field>
+        <field name="code">action = env['weekly.board.item'].ensure_records_and_open()</field>
+    </record>
+
+    <!-- Weekly cron: reset all items back to Schedule every Monday at 00:05 -->
+    <record id="ir_cron_reset_weekly_board_to_schedule" model="ir.cron">
+        <field name="name">Reset Weekly Board to Schedule</field>
+        <field name="model_id" ref="model_weekly_board_item"/>
+        <field name="state">code</field>
+        <field name="code">model.reset_all_to_schedule()</field>
+        <field name="active" eval="True"/>
+        <field name="interval_number" eval="1"/>
+        <field name="interval_type">weeks</field>
+        <field name="numbercall" eval="-1"/>
+        <field name="nextcall" eval="(DateTime.now() + relativedelta(weekday=0, hour=0, minute=5, second=0)).strftime('%Y-%m-%d %H:%M:%S')"/>
+    </record>
+</odoo>

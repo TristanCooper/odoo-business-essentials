@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="stage_schedule" model="weekly.board.stage">
+        <field name="name">Schedule</field>
+        <field name="sequence">1</field>
+        <field name="fold">false</field>
+    </record>
+    <record id="stage_monday" model="weekly.board.stage">
+        <field name="name">Monday</field>
+        <field name="sequence">10</field>
+        <field name="fold">false</field>
+    </record>
+    <record id="stage_tuesday" model="weekly.board.stage">
+        <field name="name">Tuesday</field>
+        <field name="sequence">20</field>
+        <field name="fold">false</field>
+    </record>
+    <record id="stage_wednesday" model="weekly.board.stage">
+        <field name="name">Wednesday</field>
+        <field name="sequence">30</field>
+        <field name="fold">false</field>
+    </record>
+    <record id="stage_thursday" model="weekly.board.stage">
+        <field name="name">Thursday</field>
+        <field name="sequence">40</field>
+        <field name="fold">false</field>
+    </record>
+    <record id="stage_friday" model="weekly.board.stage">
+        <field name="name">Friday</field>
+        <field name="sequence">50</field>
+        <field name="fold">false</field>
+    </record>
+    <record id="stage_order_received" model="weekly.board.stage">
+        <field name="name">Order Received</field>
+        <field name="sequence">100</field>
+        <field name="fold">true</field>
+    </record>
+</odoo>

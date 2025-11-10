@@ -1,0 +1,23 @@
+{
+    'name': 'Weekly Orders Kanban',
+    'version': '1.0',
+    'summary': 'Kanban view for weekly orders (Mon-Fri) with order received column',
+    'description': 'Kanban board grouped by week and weekdays to visualize received orders.',
+    'category': 'Sales',
+    'author': 'Your Name',
+    'website': 'https://example.com',
+    'license': 'LGPL-3',
+    'depends': ['base', 'mail', 'sale_management'],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/weekly_board_stages.xml',
+        'data/weekly_board_stage_folds.xml',
+        'data/weekly_board_server_action.xml',
+        'views/partner_weekly_board_views.xml',
+        'views/weekly_board_views.xml',
+        'views/res_partner_views.xml',
+    ],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}

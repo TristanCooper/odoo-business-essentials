@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Fold Thu and Fri columns by default -->
+    <function model="weekly.board.stage" name="write">
+        <value eval="[ref('weekly_orders_kanban.stage_thursday')]"/>
+        <value eval="{'fold': True}"/>
+    </function>
+    <function model="weekly.board.stage" name="write">
+        <value eval="[ref('weekly_orders_kanban.stage_friday')]"/>
+        <value eval="{'fold': True}"/>
+    </function>
+</odoo>

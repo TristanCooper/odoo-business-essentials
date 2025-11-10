@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Partner Kanban grouped by weekly_stage_id, filtered to flagged customers -->
+    <record id="view_partner_weekly_board_kanban" model="ir.ui.view">
+        <field name="name">res.partner.weekly.board.kanban</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="weekly_stage_id" class="o_kanban_small_column">
+                <field name="weekly_stage_id"/>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="o_kanban_record oe_kanban_global_click">
+                            <div class="o_kanban_details">
+                                <strong><field name="name"/></strong>
+                                <t t-if="record.email.raw_value">
+                                    <div class="o_text_overflow">
+                                        <i class="fa fa-envelope" role="img" aria-label="Email"/>
+                                        <a t-att-href="'mailto:%s' % record.email.raw_value" t-esc="record.email.raw_value"/>
+                                    </div>
+                                </t>
+                                <t t-if="record.phone.raw_value">
+                                    <div class="o_text_overflow">
+                                        <i class="fa fa-phone" role="img" aria-label="Phone"/>
+                                        <a t-att-href="'tel:%s' % record.phone.raw_value" t-esc="record.phone.raw_value"/>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_partner_weekly_board" model="ir.actions.act_window">
+        <field name="name">Weekly Customer Board</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[("weekly_board_customer", "=", True), "|", ("is_company", "=", True), ("parent_id", "=", False)]</field>
+        <field name="context">{"search_default_group_by_weekly_stage_id": 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Flag customers and drag between Schedule, weekdays, and Order Received.</p>
+        </field>
+    </record>
+</odoo>
