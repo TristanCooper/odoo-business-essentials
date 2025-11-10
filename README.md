@@ -1,4 +1,6 @@
-# Weekly Orders Kanban (Odoo 17)
+# Odoo Business Essentials
+
+## Weekly Orders Kanban (Odoo 17)
 Odoo addon that provides a weekly-style customer board on Contacts.
 
 - Shows flagged customers on a Kanban grouped by weekly stage (Schedule, Mon–Fri, Order Received).
